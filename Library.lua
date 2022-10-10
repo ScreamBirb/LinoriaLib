@@ -341,13 +341,13 @@ do
 
         local ColorPicker = {
             Value = Info.Default;
+            Transparency = Info.Transparency or 1;
             Type = 'ColorPicker';
             Title = type(Info.Title) == 'string' and Info.Title or 'Color picker',
         };
 
         function ColorPicker:SetHSVFromRGB(Color)
             local H, S, V = Color3.toHSV(Color);
-
             ColorPicker.Hue = H;
             ColorPicker.Sat = S;
             ColorPicker.Vib = V;
@@ -364,6 +364,14 @@ do
             Parent = ToggleLabel;
         });
 
+        local CheckerFrame = Library:Create('ImageLabel', {
+            BorderSizePixel = 0;
+            Size = UDim2.new(0, 27, 0, 13);
+            ZIndex = 5;
+            Image = 'rbxassetid://4887440500';
+            Parent = DisplayFrame;
+        });
+
         local RelativeOffset = 0;
 
         for _, Element in next, Container:GetChildren() do
@@ -377,7 +385,7 @@ do
             BackgroundColor3 = Color3.new(1, 1, 1);
             BorderColor3 = Color3.new(0, 0, 0);
             Position = UDim2.new(0, 4, 0, 20 + RelativeOffset + 1);
-            Size = UDim2.new(1, -13, 0, 253);
+            Size = UDim2.new(1, -13, 0, 271);
             Visible = false;
             ZIndex = 15;
             Parent = Container.Parent;
@@ -498,6 +506,32 @@ do
             TextColor3 = Library.FontColor,
         })
 
+        local TransparencyBoxOuter = Library:Create('Frame', {
+            BorderColor3 = Color3.new(0, 0, 0);
+            Position = UDim2.fromOffset(4, 251),
+            Size = UDim2.new(1, -8, 0, 15),
+            ZIndex = 19,
+            Parent = PickerFrameInner;
+        });
+
+        local TransparencyBoxInner = Library:Create('Frame', {
+            BackgroundColor3 = Color3.new(1, 1, 1);
+            BorderColor3 = Library.OutlineColor;
+            BorderMode = Enum.BorderMode.Inset;
+            Size = UDim2.new(1, 0, 1, 0);
+            ZIndex = 19,
+            Parent = TransparencyBoxOuter;
+        });
+
+        local Transparency = Library:Create('UIGradient', {
+            Color = ColorSequence.new({
+                ColorSequenceKeypoint.new(0, Color3.new(0, 0, 0)),
+                ColorSequenceKeypoint.new(1, Color3.fromRGB(212, 212, 212))
+            });
+            Rotation = 0;
+            Parent = TransparencyBoxInner;
+        });
+
         local DisplayLabel = Library:CreateLabel({
             Size = UDim2.new(1, 0, 0, 14);
             Position = UDim2.fromOffset(5, 5);
@@ -557,8 +591,11 @@ do
             ColorPicker.Value = Color3.fromHSV(ColorPicker.Hue, ColorPicker.Sat, ColorPicker.Vib);
             SatVibMap.BackgroundColor3 = Color3.fromHSV(ColorPicker.Hue, 1, 1);
 
+
+
             Library:Create(DisplayFrame, {
                 BackgroundColor3 = ColorPicker.Value;
+                BackgroundTransparency = 1 - ColorPicker.Transparency;
                 BorderColor3 = Library:GetDarkerColor(ColorPicker.Value);
             });
 
@@ -650,6 +687,23 @@ do
                 else
                     ColorPicker:Show();
                 end;
+            end;
+        end);
+
+        TransparencyBoxInner.InputBegan:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+                while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+                    local MinX = TransparencyBoxInner.AbsolutePosition.X;
+                    local MaxX = MinX + TransparencyBoxInner.AbsoluteSize.X;
+                    local MouseX = math.clamp(Mouse.X, MinX, MaxX);
+
+                    ColorPicker.Transparency = ((MouseX - MinX) / (MaxX - MinX));
+
+                    ColorPicker:Display();
+
+                    RenderStepped:Wait();
+                end;
+                Library:AttemptSave();
             end;
         end);
 
