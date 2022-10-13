@@ -975,10 +975,13 @@ do
                 Event = InputService.InputBegan:Connect(function(Input)
                     local Key;
 
+                    if Input.KeyCode == Enum.KeyCode.Backspace then
+                        Key = ''
+                    end
+
                     if Input.UserInputType == Enum.UserInputType.Keyboard then
                         if Input.KeyCode == Enum.KeyCode.Backspace then
-                            Key = "None";
-                            print("AAAAA")
+                            Key = '';
                         else
                             Key = Input.KeyCode.Name;
                         end
