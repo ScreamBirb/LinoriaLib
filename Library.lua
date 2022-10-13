@@ -598,6 +598,7 @@ do
             SatVibMap.BackgroundColor3 = Color3.fromHSV(ColorPicker.Hue, 1, 1);
 
             if ColorPicker.Transparency then
+                print(ColorPicker.Transparency)
                 Library:Create(DisplayFrame, {
                     BackgroundColor3 = ColorPicker.Value;
                     BackgroundTransparency = 1 - ColorPicker.Transparency;
