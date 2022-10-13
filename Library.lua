@@ -614,6 +614,7 @@ do
         function ColorPicker:OnChanged(Func)
             ColorPicker.Changed = Func;
             Func(ColorPicker.Value)
+            Func(ColorPicker.Transparency)
         end;
 
         function ColorPicker:Show()
