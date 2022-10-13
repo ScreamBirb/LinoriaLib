@@ -358,6 +358,7 @@ do
         end;
 
         ColorPicker:SetHSVFromRGB(ColorPicker.Value);
+        ColorPicker:SetTransparency(ColorPicker.Transparency);
 
         local DisplayFrame = Library:Create('Frame', {
             BackgroundColor3 = ColorPicker.Value;
@@ -592,6 +593,7 @@ do
         end)
 
         function ColorPicker:Display()
+            ColorPicker:SetTransparency(ColorPicker.Transparency);
             ColorPicker.Value = Color3.fromHSV(ColorPicker.Hue, ColorPicker.Sat, ColorPicker.Vib);
             SatVibMap.BackgroundColor3 = Color3.fromHSV(ColorPicker.Hue, 1, 1);
 
