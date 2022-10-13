@@ -591,8 +591,6 @@ do
             ColorPicker.Value = Color3.fromHSV(ColorPicker.Hue, ColorPicker.Sat, ColorPicker.Vib);
             SatVibMap.BackgroundColor3 = Color3.fromHSV(ColorPicker.Hue, 1, 1);
 
-
-
             Library:Create(DisplayFrame, {
                 BackgroundColor3 = ColorPicker.Value;
                 BackgroundTransparency = 1 - ColorPicker.Transparency;
