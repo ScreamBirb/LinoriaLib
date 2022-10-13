@@ -353,6 +353,10 @@ do
             ColorPicker.Vib = V;
         end;
 
+        function ColorPicker:SetTransparency(Trans)
+            ColorPicker.Transparency = Trans;
+        end;
+
         ColorPicker:SetHSVFromRGB(ColorPicker.Value);
 
         local DisplayFrame = Library:Create('Frame', {

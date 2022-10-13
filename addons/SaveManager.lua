@@ -19,7 +19,7 @@ local SaveManager = {} do
 				return { type = 'Slider', idx = idx, value = tostring(object.Value) }
 			end,
 			Load = function(idx, data)
-				if Options[idx] then 
+				if Options[idx] then
 					Options[idx]:SetValue(data.value)
 				end
 			end,
@@ -39,8 +39,8 @@ local SaveManager = {} do
 				return { type = 'ColorPicker', idx = idx, value = object.Value:ToHex(), transparency = object.Transparency }
 			end,
 			Load = function(idx, data)
-				if Options[idx] then 
-					Options[idx]:Display()
+				if Options[idx] then
+					Options[idx]:SetTransparency(data.transparency)
 					Options[idx]:SetValueRGB(Color3.fromHex(data.value))
 				end
 			end,
