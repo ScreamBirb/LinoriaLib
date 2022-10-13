@@ -951,10 +951,10 @@ do
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 Picking = true;
 
-                DisplayLabel.Text = "None";
+                DisplayLabel.Text = "";
 
                 local Break;
-                local Text = "None";
+                local Text = "";
 
                 task.spawn(function()
                     while (not Break) do
