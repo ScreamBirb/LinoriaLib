@@ -975,27 +975,17 @@ do
                 Event = InputService.InputBegan:Connect(function(Input)
                     local Key;
 
-                    if Input.KeyCode == Enum.KeyCode.Escape then
-                        Key = ''
-                        Break = true;
-                        Picking = false;
-
-                        DisplayLabel.Text = Key;
-                        KeyPicker.Value = Key;
-
-                        Library:AttemptSave();
-
-                        Event:Disconnect();
-                        return
-                    end
-
-                    if Input.UserInputType == Enum.UserInputType.Keyboard then
+                    if Input.UserInputType == Enum.UserInputType.Keyboard and Input.KeyCode ~= Enum.KeyCode.Escape then
                         Key = Input.KeyCode.Name;
                     elseif Input.UserInputType == Enum.UserInputType.MouseButton1 then
                         Key = 'MB1';
                     elseif Input.UserInputType == Enum.UserInputType.MouseButton2 then
                         Key = 'MB2';
                     end;
+
+                    if Input.KeyCode == Enum.KeyCode.Escape then
+                        Key = ''
+                    end
 
                     Break = true;
                     Picking = false;
