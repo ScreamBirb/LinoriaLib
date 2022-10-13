@@ -986,6 +986,7 @@ do
                         Library:AttemptSave();
 
                         Event:Disconnect();
+                        return
                     end
 
                     if Input.UserInputType == Enum.UserInputType.Keyboard then
