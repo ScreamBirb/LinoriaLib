@@ -978,6 +978,7 @@ do
                     if Input.UserInputType == Enum.UserInputType.Keyboard then
                         if Input.KeyCode == Enum.KeyCode.Backspace then
                             Key = "None";
+                            print("AAAAA")
                         else
                             Key = Input.KeyCode.Name;
                         end
