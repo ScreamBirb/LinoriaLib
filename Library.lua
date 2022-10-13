@@ -597,11 +597,13 @@ do
             ColorPicker.Value = Color3.fromHSV(ColorPicker.Hue, ColorPicker.Sat, ColorPicker.Vib);
             SatVibMap.BackgroundColor3 = Color3.fromHSV(ColorPicker.Hue, 1, 1);
 
-            Library:Create(DisplayFrame, {
-                BackgroundColor3 = ColorPicker.Value;
-                BackgroundTransparency = 1 - ColorPicker.Transparency;
-                BorderColor3 = Library:GetDarkerColor(ColorPicker.Value);
-            });
+            if ColorPicker.Transparency then
+                Library:Create(DisplayFrame, {
+                    BackgroundColor3 = ColorPicker.Value;
+                    BackgroundTransparency = 1 - ColorPicker.Transparency;
+                    BorderColor3 = Library:GetDarkerColor(ColorPicker.Value);
+                });
+            end
 
             HueBox.Text = '#' .. ColorPicker.Value:ToHex()
             RgbBox.Text = table.concat({ math.floor(ColorPicker.Value.R * 255), math.floor(ColorPicker.Value.G * 255), math.floor(ColorPicker.Value.B * 255) }, ', ')
