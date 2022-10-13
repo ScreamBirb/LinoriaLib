@@ -40,7 +40,9 @@ local SaveManager = {} do
 			end,
 			Load = function(idx, data)
 				if Options[idx] then
-					Options[idx]:SetTransparency(data.transparency or 1)
+					if data.transparency then
+						Options[idx]:SetTransparency(data.transparency or 1)
+					end
 					Options[idx]:SetValueRGB(Color3.fromHex(data.value))
 				end
 			end,
