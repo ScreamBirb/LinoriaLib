@@ -910,7 +910,7 @@ do
                 if Key == 'MB1' or Key == 'MB2' then
                     return Key == 'MB1' and InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
                         or Key == 'MB2' and InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2);
-                else
+                elseif Key ~= "None" then
                     return InputService:IsKeyDown(Enum.KeyCode[KeyPicker.Value]);
                 end;
             else
@@ -975,13 +975,9 @@ do
                 Event = InputService.InputBegan:Connect(function(Input)
                     local Key;
 
-                    if Input.KeyCode == Enum.KeyCode.Backspace then
-                        Key = ''
-                    end
-
                     if Input.UserInputType == Enum.UserInputType.Keyboard then
                         if Input.KeyCode == Enum.KeyCode.Backspace then
-                            Key = '';
+                            Key = 'None';
                         else
                             Key = Input.KeyCode.Name;
                         end
