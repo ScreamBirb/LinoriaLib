@@ -608,6 +608,7 @@ do
 
             if ColorPicker.Changed then
                 ColorPicker.Changed(ColorPicker.Value)
+                ColorPicker.Changed(ColorPicker.Transparency)
             end;
         end;
 
