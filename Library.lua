@@ -951,10 +951,10 @@ do
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 Picking = true;
 
-                DisplayLabel.Text = '';
+                DisplayLabel.Text = "None";
 
                 local Break;
-                local Text = '';
+                local Text = "None";
 
                 task.spawn(function()
                     while (not Break) do
@@ -984,7 +984,7 @@ do
                     end;
 
                     if Input.KeyCode == Enum.KeyCode.Escape then
-                        Key = ""
+                        Key = "None"
                     end
 
                     Break = true;
