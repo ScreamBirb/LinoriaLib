@@ -967,7 +967,7 @@ do
 
                         wait(0.4);
                     end;
-                end);
+                end); 
 
                 wait(0.2);
 
