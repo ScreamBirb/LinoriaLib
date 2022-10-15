@@ -102,7 +102,6 @@ function Library:MakeDraggable(Instance, Cutoff)
     Instance.Active = true;
 
    Instance.InputBegan:Connect(function(Input)
-        GuiService:SetMenuIsOpen(false, "menu")
         if Input.UserInputType == Enum.UserInputType.MouseButton1 then
             local ObjPos = Vector2.new(
                 Mouse.X - Instance.AbsolutePosition.X,
@@ -114,7 +113,6 @@ function Library:MakeDraggable(Instance, Cutoff)
             end;
 
             while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
-                GuiService:SetMenuIsOpen(false, "menu")
                 Instance.Position = UDim2.new(
                     0,
                     Mouse.X - ObjPos.X + (Instance.Size.X.Offset * Instance.AnchorPoint.X),
@@ -183,7 +181,6 @@ end
 
 function Library:OnHighlight(HighlightInstance, Instance, Properties, PropertiesDefault)
     HighlightInstance.MouseEnter:Connect(function()
-        GuiService:SetMenuIsOpen(false, "menu")
         local Reg = Library.RegistryMap[Instance];
 
         for Property, ColorIdx in next, Properties do
@@ -197,7 +194,6 @@ function Library:OnHighlight(HighlightInstance, Instance, Properties, Properties
 
     HighlightInstance.MouseLeave:Connect(function()
         local Reg = Library.RegistryMap[Instance];
-        GuiService:SetMenuIsOpen(true, "menu")
 
         for Property, ColorIdx in next, PropertiesDefault do
             Instance[Property] = Library[ColorIdx] or ColorIdx;
@@ -2496,6 +2492,14 @@ function Library:CreateWindow(...)
         ZIndex = 1;
         Parent = ScreenGui;
     });
+
+    Outer.MouseEnter:Connect(function()
+        GuiService:SetMenuIsOpen(true, "menu")
+    end)
+
+    Outer.MouseLeave:Connect(function()
+        GuiService:SetMenuIsOpen(false, "menu")
+    end)
 
     Library:MakeDraggable(Outer, 25);
 
