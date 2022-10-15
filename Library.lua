@@ -2474,7 +2474,7 @@ function Library:CreateWindow(...)
     
     if type(Config.Title) ~= 'string' then Config.Title = 'No title' end
     
-    if typeof(Config.Position) ~= 'UDim2' then Config.Position = UDim2.fromOffset(175, 50) end
+    if typeof(Config.Position) ~= 'UDim2' then Config.Position = UDim2.fromOffset(200, 50) end
     if typeof(Config.Size) ~= 'UDim2' then Config.Size = UDim2.fromOffset(550, 600) end
 
     if Config.Center then
