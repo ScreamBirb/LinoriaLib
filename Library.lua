@@ -102,7 +102,6 @@ function Library:MakeDraggable(Instance, Cutoff)
     Instance.Active = true;
 
    Instance.InputBegan:Connect(function(Input)
-        GuiService:SetMenuIsOpen(true, "menu")
         if Input.UserInputType == Enum.UserInputType.MouseButton1 then
             local ObjPos = Vector2.new(
                 Mouse.X - Instance.AbsolutePosition.X,
@@ -1753,7 +1752,6 @@ do
 
         SliderInner.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
-                GuiService:SetMenuIsOpen(true, "menu")
                 local mPos = Mouse.X;
                 local gPos = Fill.Size.X.Offset;
                 local Diff = mPos - (Fill.AbsolutePosition.X + gPos);
