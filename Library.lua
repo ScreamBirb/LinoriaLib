@@ -181,6 +181,7 @@ end
 
 function Library:OnHighlight(HighlightInstance, Instance, Properties, PropertiesDefault)
     HighlightInstance.MouseEnter:Connect(function()
+        GuiService:SetMenuIsOpen(false, "menu")
         local Reg = Library.RegistryMap[Instance];
 
         for Property, ColorIdx in next, Properties do
@@ -194,6 +195,7 @@ function Library:OnHighlight(HighlightInstance, Instance, Properties, Properties
 
     HighlightInstance.MouseLeave:Connect(function()
         local Reg = Library.RegistryMap[Instance];
+        GuiService:SetMenuIsOpen(true, "menu")
 
         for Property, ColorIdx in next, PropertiesDefault do
             Instance[Property] = Library[ColorIdx] or ColorIdx;
@@ -1750,7 +1752,6 @@ do
         end;
 
         SliderInner.InputBegan:Connect(function(Input)
-            GuiService:SetMenuIsOpen(false, "menu")
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 local mPos = Mouse.X;
                 local gPos = Fill.Size.X.Offset;
