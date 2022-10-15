@@ -2547,11 +2547,11 @@ function Library:CreateWindow(...)
         Parent = MainSectionOuter;
     });
 
-    MainSectionInner.MouseEnter:Connect(function()
+    MainSectionOuter.MouseEnter:Connect(function()
         GuiService:SetMenuIsOpen(true, "menu")
     end)
 
-    MainSectionInner.MouseLeave:Connect(function()
+    MainSectionOuter.MouseLeave:Connect(function()
         GuiService:SetMenuIsOpen(false, "menu")
     end)
 
