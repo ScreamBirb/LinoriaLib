@@ -1750,6 +1750,7 @@ do
         end;
 
         SliderInner.InputBegan:Connect(function(Input)
+            GuiService:SetMenuIsOpen(false, "menu")
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 local mPos = Mouse.X;
                 local gPos = Fill.Size.X.Offset;
