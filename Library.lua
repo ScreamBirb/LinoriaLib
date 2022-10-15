@@ -114,7 +114,6 @@ function Library:MakeDraggable(Instance, Cutoff)
 
             while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
                 GuiService:SetMenuIsOpen(false, "menu")
-                
                 Instance.Position = UDim2.new(
                     0,
                     Mouse.X - ObjPos.X + (Instance.Size.X.Offset * Instance.AnchorPoint.X),
