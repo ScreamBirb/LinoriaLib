@@ -1772,6 +1772,7 @@ do
 
                     RenderStepped:Wait();
                 end;
+                
 
                 GuiService:SetMenuIsOpen(true, "menu")
 
