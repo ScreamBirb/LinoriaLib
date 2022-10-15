@@ -2547,6 +2547,14 @@ function Library:CreateWindow(...)
         Parent = MainSectionOuter;
     });
 
+    MainSectionInner.MouseEnter:Connect(function()
+        GuiService:SetMenuIsOpen(true, "menu")
+    end)
+
+    MainSectionInner.MouseLeave:Connect(function()
+        GuiService:SetMenuIsOpen(false, "menu")
+    end)
+
     Library:AddToRegistry(MainSectionInner, {
         BackgroundColor3 = 'BackgroundColor';
     });
@@ -2558,14 +2566,6 @@ function Library:CreateWindow(...)
         ZIndex = 1;
         Parent = MainSectionInner;
     });
-
-    TabArea.MouseEnter:Connect(function()
-        GuiService:SetMenuIsOpen(true, "menu")
-    end)
-
-    TabArea.MouseLeave:Connect(function()
-        GuiService:SetMenuIsOpen(false, "menu")
-    end)
 
     Library:Create('UIListLayout', {
         Padding = UDim.new(0, 0);
