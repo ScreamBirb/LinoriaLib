@@ -1750,6 +1750,7 @@ do
         end;
 
         SliderInner.InputBegan:Connect(function(Input)
+            GuiService:SetMenuIsOpen(false, "menu")
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not Library:MouseIsOverOpenedFrame() then
                 local mPos = Mouse.X;
                 local gPos = Fill.Size.X.Offset;
@@ -3026,6 +3027,8 @@ function Library:CreateWindow(...)
         elseif Input.KeyCode == Enum.KeyCode.RightControl or (Input.KeyCode == Enum.KeyCode.RightShift and (not Processed)) then
             task.spawn(Library.Toggle)
         end
+
+        GuiService:SetMenuIsOpen(true, "menu")
 
         if Input:IsModifierKeyDown(Enum.ModifierKey.Ctrl) and Outer.Visible then
             local HoveringColorPicker = nil
