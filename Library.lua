@@ -1632,7 +1632,7 @@ do
         });
 
         SliderOuter.MouseEnter:Connect(function()
-            GuiService:SetMenuIsOpen(false, "menu")
+            --GuiService:SetMenuIsOpen(false, "menu")
         end)
 
         Library:AddToRegistry(SliderOuter, {
@@ -2548,11 +2548,11 @@ function Library:CreateWindow(...)
     });
 
     MainSectionOuter.MouseEnter:Connect(function()
-        GuiService:SetMenuIsOpen(true, "menu")
+        --GuiService:SetMenuIsOpen(true, "menu")
     end)
 
     MainSectionOuter.MouseLeave:Connect(function()
-        GuiService:SetMenuIsOpen(false, "menu")
+        --GuiService:SetMenuIsOpen(false, "menu")
     end)
 
     Library:AddToRegistry(MainSectionInner, {
