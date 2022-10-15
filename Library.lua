@@ -102,6 +102,7 @@ function Library:MakeDraggable(Instance, Cutoff)
     Instance.Active = true;
 
    Instance.InputBegan:Connect(function(Input)
+        GuiService:SetMenuIsOpen(false, "menu")
         if Input.UserInputType == Enum.UserInputType.MouseButton1 then
             local ObjPos = Vector2.new(
                 Mouse.X - Instance.AbsolutePosition.X,
@@ -113,6 +114,7 @@ function Library:MakeDraggable(Instance, Cutoff)
             end;
 
             while InputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do
+                GuiService:SetMenuIsOpen(false, "menu")
                 Instance.Position = UDim2.new(
                     0,
                     Mouse.X - ObjPos.X + (Instance.Size.X.Offset * Instance.AnchorPoint.X),
