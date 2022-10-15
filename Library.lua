@@ -102,7 +102,6 @@ function Library:MakeDraggable(Instance, Cutoff)
     Instance.Active = true;
 
    Instance.InputBegan:Connect(function(Input)
-        GuiService:SetMenuIsOpen(false, "menu")
         if Input.UserInputType == Enum.UserInputType.MouseButton1 then
             local ObjPos = Vector2.new(
                 Mouse.X - Instance.AbsolutePosition.X,
@@ -1632,6 +1631,10 @@ do
             Parent = Container;
         });
 
+        SliderOuter.MouseEnter:Connect(function()
+            GuiService:SetMenuIsOpen(false, "menu")
+        end)
+
         Library:AddToRegistry(SliderOuter, {
             BorderColor3 = 'Black';
         });
@@ -2494,14 +2497,6 @@ function Library:CreateWindow(...)
         Parent = ScreenGui;
     });
 
-    Outer.MouseEnter:Connect(function()
-        GuiService:SetMenuIsOpen(true, "menu")
-    end)
-
-    Outer.MouseLeave:Connect(function()
-        GuiService:SetMenuIsOpen(false, "menu")
-    end)
-
     Library:MakeDraggable(Outer, 25);
 
     local Inner = Library:Create('Frame', {
@@ -2563,6 +2558,14 @@ function Library:CreateWindow(...)
         ZIndex = 1;
         Parent = MainSectionInner;
     });
+
+    TabArea.MouseEnter:Connect(function()
+        GuiService:SetMenuIsOpen(true, "menu")
+    end)
+
+    TabArea.MouseLeave:Connect(function()
+        GuiService:SetMenuIsOpen(false, "menu")
+    end)
 
     Library:Create('UIListLayout', {
         Padding = UDim.new(0, 0);
